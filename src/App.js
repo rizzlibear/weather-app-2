@@ -38,6 +38,7 @@ function App() {
         .catch((error) => {
           setError(error.message);
           setIsSubmitted(false);
+          setWeatherData(null);
         });
     }
   }, [isSubmitted, city]);
