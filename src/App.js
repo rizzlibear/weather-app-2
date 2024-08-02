@@ -1,6 +1,3 @@
-
-
-
 import React, { useState, useEffect } from "react";
 
 function App() {
@@ -43,6 +40,26 @@ function App() {
     }
   }, [isSubmitted, city]);
 
+  const getWeatherIcon = (weatherId) => {
+    if (weatherId >= 200 && weatherId < 300) {
+      return "wi wi-thunderstorm";
+    } else if (weatherId >= 300 && weatherId < 500) {
+      return "wi wi-sprinkle";
+    } else if (weatherId >= 500 && weatherId < 600) {
+      return "wi wi-rain";
+    } else if (weatherId >= 600 && weatherId < 700) {
+      return "wi wi-snow";
+    } else if (weatherId >= 700 && weatherId < 800) {
+      return "wi wi-fog";
+    } else if (weatherId === 800) {
+      return "wi wi-day-sunny";
+    } else if (weatherId > 800) {
+      return "wi wi-cloudy";
+    } else {
+      return "wi wi-na";
+    }
+  };
+
   return (
     <div className="form-container">
       <h2>Weather App</h2>
@@ -67,6 +84,9 @@ function App() {
       {weatherData && (
         <div className="weather-info">
           <h3>Weather in {weatherData.name}</h3>
+          <p className="weather-icon">
+            <i className={getWeatherIcon(weatherData.weather[0].id)}></i>
+          </p>
           <p>Temperature: {Math.round(weatherData.main.temp - 273.15)}°C</p>
           <p>Weather: {weatherData.weather[0].description}</p>
           <p>
@@ -81,4 +101,5 @@ function App() {
 }
 
 export default App;
+
 
